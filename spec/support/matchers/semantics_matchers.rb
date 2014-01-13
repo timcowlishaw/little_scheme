@@ -123,4 +123,12 @@ module SemanticsMatchers
       evaluate(actual) == evaluate(expected)
     end
   end
+
+  matcher :be_a_member_of do |lat|
+    include EvaluatingMatcher
+
+    match do |atom|
+      evaluate(lat).member?(evaluate(atom))
+    end
+  end
 end
