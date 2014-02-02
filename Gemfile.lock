@@ -1,8 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    coderay (1.1.0)
     diff-lcs (1.2.5)
+    method_source (0.8.2)
     polyglot (0.3.3)
+    pry (0.9.12.4)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     rspec (3.0.0.beta1)
       rspec-core (= 3.0.0.beta1)
       rspec-expectations (= 3.0.0.beta1)
@@ -13,6 +19,7 @@ GEM
       rspec-support (= 3.0.0.beta1)
     rspec-mocks (3.0.0.beta1)
     rspec-support (3.0.0.beta1)
+    slop (3.4.7)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -21,5 +28,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  pry (~> 0.9.12.4)
   rspec (~> 3.0.0.beta1)
   treetop (~> 1.4.15)
