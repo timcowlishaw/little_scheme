@@ -1,0 +1,41 @@
+grammar SchemeGrammar
+
+  rule s_expressions
+    (s_expression space?)*
+  end
+
+  rule s_expression
+    atom / list / boolean
+  end
+
+  rule list
+    '(' (s_expression (space s_expression)*)? ')' {
+      def s_expressions
+        children = (elements || []).flat_map(&:s_expressions)
+        children.reverse.reduce(LittleScheme::Null.new) { |cdr, car|
+          LittleScheme::Cons.new(car, cdr)
+        }
+      end
+    }
+  end
+
+  rule atom
+    [^\(\)\s]+ {
+      def s_expressions
+        [LittleScheme::Atom.new(text_value.to_sym)]
+      end
+    }
+  end
+
+  rule boolean
+    '#' ('f' / 't') {
+      def s_expressions
+        [LittleScheme::Boolean.new(text_value == '#t')]
+      end
+    }
+  end
+
+  rule space
+    [\s]+
+  end
+end
