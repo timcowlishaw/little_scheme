@@ -1,5 +1,5 @@
 require 'little_scheme/s_expression'
-
+require 'little_scheme/boolean'
 module LittleScheme
   class Atom < SExpression
     def initialize(identifier)
@@ -14,6 +14,14 @@ module LittleScheme
 
     def list?
       false
+    end
+
+    def eq?(other)
+      if self == other
+        Boolean.new(true)
+      else
+        Boolean.new(false)
+      end
     end
 
     def ==(other)
@@ -32,8 +40,8 @@ module LittleScheme
       environment[identifier]
     end
 
-    def apply(subject, *arguments)
-      subject.public_send(identifier, *arguments)
+    def apply(environment, *arguments)
+      evaluate(environment).call(*arguments)
     end
   end
 end

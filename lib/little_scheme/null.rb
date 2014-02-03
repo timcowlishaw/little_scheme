@@ -1,4 +1,5 @@
 require 'little_scheme/s_expression'
+require 'little_scheme/boolean'
 module LittleScheme
   class Null < SExpression
     def atom?
@@ -13,7 +14,7 @@ module LittleScheme
       true
     end
 
-    def elements
+    def s_expressions
       []
     end
 

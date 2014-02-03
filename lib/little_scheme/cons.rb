@@ -1,4 +1,5 @@
 require 'little_scheme/s_expression'
+require 'little_scheme/boolean'
 module LittleScheme
   class Cons < SExpression
     def initialize(car, cdr)
@@ -35,12 +36,12 @@ module LittleScheme
       car.hash ^ cdr.hash
     end
 
-    def elements
-      [car] + cdr.elements
+    def s_expressions
+      [car] + cdr.s_expressions
     end
 
     def evaluate(environment={})
-      car.apply(*cdr.elements.map { |e| e.evaluate(environment) } )
+      car.apply(environment, *cdr.s_expressions.map { |e| e.evaluate(environment) } )
     end
   end
 end

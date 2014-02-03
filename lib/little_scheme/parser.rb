@@ -7,6 +7,7 @@ require 'little_scheme/atom'
 require 'little_scheme/cons'
 require 'little_scheme/null'
 require 'little_scheme/boolean'
+require 'little_scheme/number'
 
 Treetop.load(File.join(File.dirname(__FILE__), "grammar.treetop"))
 module LittleScheme
